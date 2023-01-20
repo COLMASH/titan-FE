@@ -1,12 +1,14 @@
 import React, {useState, Fragment} from 'react'
 import {Button} from 'antd'
-import {Document, Page} from 'react-pdf/dist/esm/entry.webpack'
 import {PlusCircleOutlined, CloseCircleFilled} from '@ant-design/icons'
 import styles from './UploadPdf.module.css'
 import {callUploadPdf} from '../api/axios-api-calls'
 import Upload from '../assets/upload.svg'
 import 'react-pdf/dist/esm/Page/AnnotationLayer.css'
 import 'react-pdf/dist/esm/Page/TextLayer.css'
+// import {Document, Page, pdfjs} from 'react-pdf/dist/esm/entry.webpack'
+import {Document, Page, pdfjs} from 'react-pdf'
+pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`
 
 const UploadPdf = () => {
     const [fileArray, setFileArray] = useState([])

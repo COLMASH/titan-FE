@@ -4,13 +4,11 @@
     align-items: center;
     margin-top: 100px;
 }
-
 .container {
     display: flex;
     flex-direction: column-reverse;
     align-items: center;
 }
-
 .button {
     display: flex;
     border: 2px solid;
@@ -27,13 +25,11 @@
     margin-top: 20px;
     margin-bottom: 20px;
 }
-
 .select {
     display: flex !important;
     margin-right: 4%;
     align-items: center !important;
 }
-
 .images_container {
     width: 100%;
     display: flex;
@@ -43,14 +39,12 @@
     flex-direction: column;
     flex-wrap: wrap;
 }
-
 .image_pdf {
     margin-right: 5px;
 }
 :global(.react-pdf__Page__annotations.annotationLayer) {
     display: none !important;
 }
-
 .save_button {
     display: flex !important;
     margin: auto !important;
@@ -59,12 +53,11 @@
     border-color: #005ebe !important;
     font-weight: 600 !important;
     font-size: 16px !important;
-    width: 75%;
+    width: 85%;
     margin-bottom: 2em !important;
     color: white !important;
     box-shadow: none !important;
 }
-
 .upload_message {
     display: flex;
     justify-content: center;
@@ -94,4 +87,10 @@
 .close_pdf_container .close_circle_icon {
     color: red;
     cursor: pointer;
+}
+.phoneNumberContainer {
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    margin-left: -10px;
 }

@@ -1,5 +1,5 @@
 import React, {useState, Fragment} from 'react'
-import {Button} from 'antd'
+import {Button, InputNumber, Form} from 'antd'
 import {PlusCircleOutlined, CloseCircleFilled} from '@ant-design/icons'
 import styles from './UploadPdf.module.css'
 import {callUploadPdf} from '../api/axios-api-calls'
@@ -9,12 +9,29 @@ import 'react-pdf/dist/esm/Page/TextLayer.css'
 import {Document, Page, pdfjs} from 'react-pdf'
 pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`
 
+const fieldsValidation = {
+    phoneNumber: [
+        {required: true, message: 'Please enter a phone number.'},
+        {
+            validator: async (_, value) => {
+                const stringValue = value && value.toString()
+                if (stringValue && stringValue.length !== 11) {
+                    throw new Error('Please enter a valid phone number.')
+                }
+            },
+            message: 'Please enter a valid phone number.'
+        }
+    ]
+}
+
 const UploadPdf = () => {
+    const [faxForm] = Form.useForm()
     const [fileArray, setFileArray] = useState([])
     const [isUploading, setIsUploading] = useState(false)
     const [saveIsVisible, setSaveIsVisible] = useState(false)
     const [errorMessages, setErrorMessages] = useState('')
     const [successMessages, setSuccessMessages] = useState('')
+    const [phoneNumber, setPhoneNumber] = useState('')
 
     const handleChange = async (e) => {
         setErrorMessages('')
@@ -35,10 +52,10 @@ const UploadPdf = () => {
         }
     }
 
-    const handleUpload = async () => {
+    const handleUpload = async (values) => {
         try {
             setIsUploading(true)
-            const response = await callUploadPdf(fileArray)
+            const response = await callUploadPdf(fileArray, values.phoneNumber)
             if (response.status === 200) {
                 setIsUploading(false)
                 setFileArray([])
@@ -75,14 +92,37 @@ const UploadPdf = () => {
                     </div>
                     <div className={styles.container}>
                         {saveIsVisible ? (
-                            <Button
-                                onClick={handleUpload}
-                                type="primary"
-                                size="large"
-                                className={styles.save_button}
-                            >
-                                Send fax
-                            </Button>
+                            <Form form={faxForm} layout="vertical" onFinish={handleUpload}>
+                                <div className={styles.phoneNumberContainer}>
+                                    <h3 style={{marginTop: '5px'}}>+</h3>
+                                    <Form.Item
+                                        name="phoneNumber"
+                                        rules={fieldsValidation['phoneNumber']}
+                                        onChange={(e) => {
+                                            setErrorMessages()
+                                            setPhoneNumber('phoneNumber', e.target.value)
+                                        }}
+                                    >
+                                        <InputNumber
+                                            style={{
+                                                width: '100%',
+                                                height: '40px'
+                                            }}
+                                            placeholder="Enter phone number"
+                                            size="large"
+                                            value={phoneNumber}
+                                        />
+                                    </Form.Item>
+                                </div>
+                                <Button
+                                    htmlType="submit"
+                                    type="primary"
+                                    size="large"
+                                    className={styles.save_button}
+                                >
+                                    Send fax
+                                </Button>
+                            </Form>
                         ) : null}
                         <div className={styles.images_container}>
                             <input
@@ -121,7 +161,7 @@ const UploadPdf = () => {
                             })}
                             <label htmlFor="files" className={styles.button}>
                                 <PlusCircleOutlined className={styles.select} />
-                                Add file
+                                {saveIsVisible ? 'Change file' : 'Add file'}
                             </label>
                         </div>
                     </div>

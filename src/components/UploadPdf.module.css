@@ -40,6 +40,8 @@
     flex-wrap: wrap;
 }
 .image_pdf {
+    border: 1px solid;
+    border-color: lightgrey;
     margin-right: 5px;
 }
 :global(.react-pdf__Page__annotations.annotationLayer) {

@@ -1,0 +1,97 @@
+.mainContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 100px;
+}
+
+.container {
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: center;
+}
+
+.button {
+    display: flex;
+    border: 2px solid;
+    background-color: white;
+    width: 70%;
+    justify-content: center;
+    color: #005ebe;
+    border-radius: 4px;
+    max-width: 100%;
+    font-weight: 600;
+    padding: 10px;
+    text-align: center;
+    white-space: nowrap;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.select {
+    display: flex !important;
+    margin-right: 4%;
+    align-items: center !important;
+}
+
+.images_container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 10px;
+    align-items: center;
+    flex-direction: column;
+    flex-wrap: wrap;
+}
+
+.image_pdf {
+    margin-right: 5px;
+}
+:global(.react-pdf__Page__annotations.annotationLayer) {
+    display: none !important;
+}
+
+.save_button {
+    display: flex !important;
+    margin: auto !important;
+    justify-content: center !important;
+    background-color: #005ebe !important;
+    border-color: #005ebe !important;
+    font-weight: 600 !important;
+    font-size: 16px !important;
+    width: 75%;
+    margin-bottom: 2em !important;
+    color: white !important;
+    box-shadow: none !important;
+}
+
+.upload_message {
+    display: flex;
+    justify-content: center;
+}
+.uploading {
+    color: #005ebe;
+    font-weight: 600;
+    margin-left: 4%;
+    text-align: center;
+    margin-bottom: 0;
+}
+.text_error {
+    color: red;
+    text-align: justify;
+}
+.text_green {
+    font-weight: bolder;
+    color: #00da66;
+}
+.close_pdf_container {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    justify-content: flex-end;
+    top: 0.7rem;
+}
+.close_pdf_container .close_circle_icon {
+    color: red;
+    cursor: pointer;
+}

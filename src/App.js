@@ -1,7 +1,7 @@
-import UploadPdf from './components/UploadPdf'
+import FaxApp from './components/FaxApp'
 
 function App() {
-    return <UploadPdf />
+    return <FaxApp />
 }
 
 export default App

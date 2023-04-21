@@ -1,0 +1,46 @@
+.images_container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 10px;
+    align-items: center;
+    flex-direction: column;
+    flex-wrap: wrap;
+}
+.close_pdf_container {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    justify-content: flex-end;
+    top: 0.7rem;
+}
+.close_pdf_container .close_circle_icon {
+    color: red;
+    cursor: pointer;
+}
+.image_pdf {
+    border: 1px solid;
+    border-color: lightgrey;
+    margin-right: 5px;
+}
+.select {
+    display: flex;
+    margin-right: 4%;
+    align-items: center;
+}
+.button {
+    display: flex;
+    border: 2px solid;
+    background-color: white;
+    width: 70%;
+    justify-content: center;
+    color: #005ebe;
+    border-radius: 4px;
+    max-width: 100%;
+    font-weight: 600;
+    padding: 10px;
+    text-align: center;
+    white-space: nowrap;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}

@@ -1,4 +1,4 @@
-import {apiEndpoint} from './api-endpoint'
+import {apiEndpoint} from './apiEndpoint'
 import axios from 'axios'
 
 export async function callUploadPdf(fileArray, phoneNumber) {
@@ -10,6 +10,6 @@ export async function callUploadPdf(fileArray, phoneNumber) {
     const headers = {
         headers: {'Content-Type': 'multipart/form-data'}
     }
-    const res = await axios.post(`${apiEndpoint}/upload-pdf`, formData, headers)
-    return res
+    const response = await axios.post(`${apiEndpoint}/upload-pdf`, formData, headers)
+    return response
 }

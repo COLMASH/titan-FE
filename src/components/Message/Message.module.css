@@ -1,0 +1,13 @@
+.container {
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: center;
+}
+.text_error {
+    color: red;
+    text-align: justify;
+}
+.text_green {
+    font-weight: bolder;
+    color: #00da66;
+}

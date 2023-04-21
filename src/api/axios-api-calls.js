@@ -3,8 +3,8 @@ import axios from 'axios'
 
 export async function callUploadPdf(fileArray, phoneNumber) {
     const formData = new FormData()
-    fileArray.forEach((v, i) => {
-        return formData.append(v.name.substr(0, v.name.lastIndexOf('.')), v)
+    fileArray.forEach((file) => {
+        return formData.append(file.name.substr(0, file.name.lastIndexOf('.')), file)
     })
     formData.append('phoneNumber', '+'.concat(phoneNumber))
     const headers = {

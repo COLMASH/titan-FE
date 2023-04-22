@@ -9,7 +9,13 @@ pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/$
 function PdfSelector({fileArray, handleDelete, handleChange, saveIsVisible}) {
     return (
         <div className={styles.images_container}>
-            <input type="file" id="files" onChange={handleChange} style={{display: 'none'}} />
+            <input
+                alt="add pdf"
+                type="file"
+                id="files"
+                onChange={handleChange}
+                style={{display: 'none'}}
+            />
             {fileArray.map((file, index) => {
                 const fileName = file.name
                 const pdfExtension = fileName.substring(fileName.length - 3)

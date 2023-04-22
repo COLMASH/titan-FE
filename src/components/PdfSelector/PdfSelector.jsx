@@ -24,6 +24,7 @@ function PdfSelector({fileArray, handleDelete, handleChange, saveIsVisible}) {
                         <div key={index}>
                             <div className={styles.close_pdf_container}>
                                 <CloseCircleFilled
+                                    aria-label="delete document"
                                     onClick={handleDelete}
                                     className={styles.close_circle_icon}
                                 />

@@ -49,7 +49,6 @@ const FaxApp = () => {
         } catch (error) {
             setIsUploading(false)
             setErrorMessage('Something went wrong, please try again')
-            console.error(error)
         }
     }
 

@@ -3,6 +3,7 @@ import axios from 'axios'
 import FaxApp from '../FaxApp'
 
 jest.mock('axios')
+
 jest.mock('react-pdf', () => ({
     pdfjs: {GlobalWorkerOptions: {workerSrc: 'abc'}},
     Document: ({onLoadSuccess = (pdf = {numPages: 1}) => pdf.numPages}) => {
@@ -88,7 +89,6 @@ describe('FaxApp', () => {
         expect(errorMessage).toBeInTheDocument()
     })
     it('-8- should render an error message if user type invalid phone number', async () => {
-        axios.post.mockRejectedValueOnce(new Error('Error'))
         const file = new File(['(⌐□_□)'], 'example.pdf', {type: 'application/pdf'})
         const input = screen.getByAltText('add pdf')
         fireEvent.change(input, {target: {files: [file]}})
@@ -98,7 +98,6 @@ describe('FaxApp', () => {
         expect(errorMessage).toBeInTheDocument()
     })
     it('-9- should render an error message if user erase phone number', async () => {
-        axios.post.mockRejectedValueOnce(new Error('Error'))
         const file = new File(['(⌐□_□)'], 'example.pdf', {type: 'application/pdf'})
         const input = screen.getByAltText('add pdf')
         fireEvent.change(input, {target: {files: [file]}})

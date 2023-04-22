@@ -38,7 +38,7 @@ describe('FaxApp', () => {
         expect(errorMessage).toBeInTheDocument()
     })
     it('-4- should upload a PDF file when "Send fax" button is clicked', async () => {
-        axios.post.mockResolvedValue({
+        axios.post.mockResolvedValueOnce({
             status: 200
         })
         const file = new File(['(⌐□_□)'], 'example.pdf', {type: 'application/pdf'})
@@ -50,5 +50,19 @@ describe('FaxApp', () => {
         fireEvent.click(sendFaxButton)
         const successMessage = await screen.findByText(`Fax has been sent successfully!`)
         expect(successMessage).toBeInTheDocument()
+    })
+    it('-5- should render a Loading image when "Send fax" button is clicked', async () => {
+        axios.post.mockResolvedValueOnce({
+            status: 300
+        })
+        const file = new File(['(⌐□_□)'], 'example.pdf', {type: 'application/pdf'})
+        const input = screen.getByAltText('add pdf')
+        fireEvent.change(input, {target: {files: [file]}})
+        const sendFaxButton = await screen.findByText(`Send fax`)
+        const phoneInput = await screen.findByPlaceholderText(`Enter phone number`)
+        fireEvent.change(phoneInput, {target: {value: 12345678901}})
+        fireEvent.click(sendFaxButton)
+        const loadingMessage = await screen.findByText(`Sending fax...`)
+        expect(loadingMessage).toBeInTheDocument()
     })
 })

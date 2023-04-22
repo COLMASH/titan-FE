@@ -64,6 +64,12 @@ const FaxApp = () => {
                 <>
                     <Message errorMessage={errorMessage} successMessage={successMessage}></Message>
                     <div className={styles.container}>
+                        <PdfSelector
+                            fileArray={fileArray}
+                            handleDelete={handleDelete}
+                            handleChange={handleChange}
+                            saveIsVisible={saveIsVisible}
+                        />
                         {saveIsVisible && (
                             <UploadForm
                                 form={faxForm}
@@ -76,12 +82,6 @@ const FaxApp = () => {
                                 Send fax
                             </UploadForm>
                         )}
-                        <PdfSelector
-                            fileArray={fileArray}
-                            handleDelete={handleDelete}
-                            handleChange={handleChange}
-                            saveIsVisible={saveIsVisible}
-                        />
                     </div>
                 </>
             ) : (
